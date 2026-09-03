@@ -5,7 +5,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions use on
 
 | Version | Date | Author | Status |
 |---|---|---|---|
-| 1.9 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 2.2 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 2.1 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+| 2.0 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+| 1.9 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.8 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.7 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.6 | 2026-09-03 | Mohamed ElMahdy | Superseded |
@@ -15,6 +18,36 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions use on
 | 1.2 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.1 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.0 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+
+---
+
+## [2.2] — 2026-09-03
+
+### Fixed | إصلاحات
+- If the register saves the row but returns no certificate number (Apps Script deployment older than v1.8), the builder now shows an explicit error telling the operator to paste the latest `Code.gs` and publish a **New version**, instead of a misleading "saved" status.
+- Version 2.2. Rollback: folder `sru-certificate-builder-v2.1`.
+
+---
+
+## [2.1] — 2026-09-03
+
+### Removed | حذف
+- Form settings that departments should not touch: verify-URL field, QR content mode, Apps Script URL field, "log on print" toggle, and the browser (localStorage) URL persistence.
+
+### Changed | تعديلات
+- Behaviour is now fixed in code: QR = verification link only (`VERIFY_URL`), register = `SHEET_URL`, every print is logged. Only «إظهار رمز QR» remains as a toggle.
+- Version 2.1. Rollback: folder `sru-certificate-builder-v2.0`.
+
+---
+
+## [2.0] — 2026-09-03
+
+### Removed | حذف
+- Manual numbering controls: the «توليد رقم» button and the "توليد الرقم تلقائيًا" toggle.
+
+### Changed | تعديلات
+- Certificate number field is now read-only and always assigned by the register on print (`PREFIX-CERT-YYYY-NNN`); local time-based fallback remains when no register URL is set.
+- Version 2.0 (follows 1.9 per the one-decimal rule). Rollback: folder `sru-certificate-builder-v1.9`.
 
 ---
 

@@ -5,7 +5,8 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions use on
 
 | Version | Date | Author | Status |
 |---|---|---|---|
-| 2.5 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 2.6 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 2.5 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 2.4 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 2.3 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 2.2 | 2026-09-03 | Mohamed ElMahdy | Superseded |
@@ -21,6 +22,16 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions use on
 | 1.2 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.1 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.0 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+
+---
+
+## [2.6] — 2026-09-03
+
+### Added | إضافات
+- «اختبار الاتصال بالسجل» button: calls `?action=next` and reports the exact cause — HTTP 404 (deployment missing), outdated Code.gs (no numbering), non-JSON response (access not "Anyone"), or network failure.
+
+### Changed | تعديلات
+- The "not printed" error now keeps the underlying register error instead of replacing it with a generic message. Version 2.6. Rollback: folder `sru-certificate-builder-v2.5`.
 
 ---
 

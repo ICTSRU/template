@@ -5,7 +5,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions use on
 
 | Version | Date | Author | Status |
 |---|---|---|---|
-| 1.7 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 1.9 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 1.8 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+| 1.7 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.6 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.5 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.4 | 2026-09-03 | Mohamed ElMahdy | Superseded |
@@ -13,6 +15,28 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions use on
 | 1.2 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.1 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.0 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+
+---
+
+## [1.9] — 2026-09-03
+
+### Changed | تعديلات
+- QR code (19 mm) moved to the top-left, directly under the certificate number, with its "Scan to verify" label; the bottom-left area is now free.
+- Print / Save-as-PDF default file name is now `<recipient name> - <certificate no.>` (set via the document title during printing and restored afterwards). JSON export uses the same name.
+- Version 1.9. Rollback: folder `sru-certificate-builder-v1.8`.
+
+---
+
+## [1.8] — 2026-09-03
+
+### Added | إضافات
+- Automatic certificate numbering `PREFIX-CERT-YYYY-NNN`: new "رمز الجهة" prefix field (default ICTD), "توليد الرقم تلقائيًا" toggle (on), and a «توليد رقم» button that reserves the next number in the register.
+- Print flow: if the number is empty, the record is saved first, the server assigns the next number under a script lock, the field and QR update, then the print dialog opens.
+- `Code.gs`: `nextCertNo_()` (per-prefix, per-year sequence), `autoNumber/prefix/year` handling in `doPost`, `?action=next&prefix=` preview in `doGet`. **Requires redeploying the Apps Script as a new version.**
+- Offline fallback: time-based local number when no register URL is set.
+
+### Changed | تعديلات
+- Version 1.8; JSON export/import includes `prefix`. Rollback: folder `sru-certificate-builder-v1.7`.
 
 ---
 

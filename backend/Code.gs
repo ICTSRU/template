@@ -1,8 +1,9 @@
 /**
- * SRU Certificate Builder — Google Sheets backend (v1.3)
+ * SRU Certificate Builder — Google Sheets backend (v1.8)
  * Deploy: Extensions ▸ Apps Script ▸ paste ▸ Deploy ▸ New deployment ▸ Web app
  *         Execute as: Me   |   Who has access: Anyone
  * Sheet tab "Certificates" is created automatically with headers on first save.
+ * Auto-numbering: POST with autoNumber=true and empty certNo → server assigns PREFIX-CERT-YYYY-NNN under lock (no collisions).
  * Upsert rule: a row is matched by "Cert No" — same number updates the row, new number appends.
  */
 const SHEET_NAME = 'Certificates';
@@ -35,12 +36,28 @@ function headerIndex_(sh) {
   return idx;
 }
 
+/** Next sequential number for a prefix: PREFIX-CERT-YYYY-NNN (scans existing Cert No values). */
+function nextCertNo_(sh, idx, prefix, year) {
+  prefix = String(prefix || 'SRU').toUpperCase().replace(/[^A-Z0-9]/g, '') || 'SRU';
+  year = year || new Date().getFullYear();
+  const re = new RegExp('^' + prefix + '-CERT-' + year + '-(\\d+)$');
+  let max = 0;
+  if (sh.getLastRow() > 1) {
+    sh.getRange(2, idx['Cert No'] + 1, sh.getLastRow() - 1, 1).getValues().forEach(r => {
+      const m = String(r[0]).trim().match(re); if (m) max = Math.max(max, parseInt(m[1], 10));
+    });
+  }
+  return prefix + '-CERT-' + year + '-' + String(max + 1).padStart(3, '0');
+}
+
 function doPost(e) {
   const lock = LockService.getScriptLock(); lock.waitLock(10000);
   try {
     const d = JSON.parse(e.postData.contents || '{}');
     const sh = getSheet_();
     const idx = headerIndex_(sh);
+    let assigned = false;
+    if (!d.certNo && d.autoNumber) { d.certNo = nextCertNo_(sh, idx, d.prefix, d.year); assigned = true; }
     const rec = {
       'Timestamp': new Date(), 'Cert No': d.certNo || '', 'Issue Date': d.issueDate || '',
       'Department': d.dept || '', 'Certificate Type': d.title || '', 'Recipient Name': d.name || '',
@@ -66,7 +83,7 @@ function doPost(e) {
     Object.keys(rec).forEach(k => { if (k in idx) line[idx[k]] = rec[k]; });
     if (row) sh.getRange(row, 1, 1, width).setValues([line]);
     else { row = sh.getLastRow() + 1; sh.getRange(row, 1, 1, width).setValues([line]); }
-    return json_({ ok: true, row: row, updated: !!d.certNo, certNo: rec['Cert No'] });
+    return json_({ ok: true, row: row, certNo: rec['Cert No'], assigned: assigned });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
   } finally { lock.releaseLock(); }
@@ -74,6 +91,9 @@ function doPost(e) {
 
 /** GET ?no=ICTD-CERT-2026-008  → public verification lookup (used by the QR verify link) */
 function doGet(e) {
+  if (e.parameter.action === 'next') { // preview only — the number is reserved on save
+    const sh = getSheet_(); return json_({ ok: true, certNo: nextCertNo_(sh, headerIndex_(sh), e.parameter.prefix, e.parameter.year) });
+  }
   const no = (e.parameter.no || '').trim();
   if (!no) return json_({ ok: true, service: 'SRU Certificate Register', usage: '?no=<certificate number>' });
   const sh = getSheet_(); const idx = headerIndex_(sh);

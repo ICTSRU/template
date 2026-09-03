@@ -6,14 +6,14 @@ No server, no build step, no external assets (the university logo is embedded).
 
 قالب شهادات موحّد لجامعة سليمان الراجحي في ملف واحد. تفتح أي إدارة الصفحة، تعبّئ النموذج، ثم تطبع الشهادة أو تحفظها بصيغة PDF — دون خادم أو ملفات خارجية.
 
-**Current version:** 1.7 — see [CHANGELOG.md](CHANGELOG.md)
+**Current version:** 1.9 — see [CHANGELOG.md](CHANGELOG.md)
 
 ---
 
 ## Repository layout | هيكل المستودع
 
 ```
-sru-certificate-builder-v1.7/
+sru-certificate-builder-v1.9/
 ├── index.html      ← the builder (form + live preview + print)
 ├── verify.html     ← public QR verification page (logo + certificate data + validity)
 ├── README.md
@@ -55,6 +55,10 @@ Text placeholders replaced automatically:
 ## Certificate register | سجل الشهادات
 
 Every print/save can be logged to a Google Sheet through an Apps Script Web App — see [backend/SETUP.md](backend/SETUP.md). Same certificate number = same row (upsert). The script exposes `?no=<cert no>` (JSON), consumed by **verify.html** — the QR on each certificate opens `https://ictsru.github.io/template/verify.html?no=<cert no>`, which shows the university logo, the certificate data and a valid/not-found verdict.
+
+## Auto-numbering | الترقيم التلقائي
+
+Leave the certificate number empty: on print (or «توليد رقم») the register assigns the next `PREFIX-CERT-YYYY-NNN` for the department prefix, atomically, so numbers never collide across departments. Without a register URL a time-based local number is used.
 
 ## Brand | الهوية
 

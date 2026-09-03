@@ -17,3 +17,9 @@ Use `<exec-url>?no=` + certificate number as the QR "verify URL" to allow real v
 
 ## Redeploying after code changes
 Deploy ▸ Manage deployments ▸ edit (pencil) ▸ Version: **New version** ▸ Deploy — the `/exec` URL stays the same.
+
+## Auto-numbering (v1.8)
+Format: `PREFIX-CERT-YYYY-NNN` (e.g. `ICTD-CERT-2026-004`). The prefix is the department code entered in the builder; the sequence restarts each year per prefix.
+The number is assigned by the script under a lock when the certificate is saved (`autoNumber=true`, empty `certNo`), so two departments can never receive the same number.
+`GET <exec-url>?action=next&prefix=ICTD` previews the next number without reserving it.
+**After updating Code.gs: Deploy ▸ Manage deployments ▸ edit ▸ Version: New version ▸ Deploy.**

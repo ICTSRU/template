@@ -6,18 +6,21 @@ No server, no build step, no external assets (the university logo is embedded).
 
 قالب شهادات موحّد لجامعة سليمان الراجحي في ملف واحد. تفتح أي إدارة الصفحة، تعبّئ النموذج، ثم تطبع الشهادة أو تحفظها بصيغة PDF — دون خادم أو ملفات خارجية.
 
-**Current version:** 1.0 — see [CHANGELOG.md](CHANGELOG.md)
+**Current version:** 1.4 — see [CHANGELOG.md](CHANGELOG.md)
 
 ---
 
 ## Repository layout | هيكل المستودع
 
 ```
-sru-certificate-builder-v1.0/
+sru-certificate-builder-v1.4/
 ├── index.html      ← the builder (form + live preview + print)
 ├── README.md
 ├── CHANGELOG.md    ← change record for every version
-└── .gitignore
+├── .gitignore
+└── backend/
+    ├── Code.gs     ← Google Apps Script (Sheets register + verification lookup)
+    └── SETUP.md    ← deployment steps
 ```
 
 Versioning rule: the **folder** carries the version; the **file name** does not. The version is displayed inside the page header (`Certificate Builder vX.Y`) and in `<title>`.
@@ -34,6 +37,10 @@ Versioning rule: the **folder** carries the version; the **file name** does not.
 4. Click **طباعة / حفظ PDF** → in the print dialog: *Save as PDF*, A4, Landscape, Margins: None, Background graphics: On.
 5. Optionally export the form data as JSON to reissue or archive later.
 
+**Live page:** https://ictsru.github.io/template/
+
+Each certificate carries a QR code with the holder's main data (certificate no., name, type, issuer, period, grade, issue date, optional verification URL) and a "Powered by ICTD 2026" footer line — both editable in the form.
+
 Text placeholders replaced automatically:
 
 | Placeholder | Replaced with |
@@ -43,6 +50,10 @@ Text placeholders replaced automatically:
 | `{الإدارة}` | department name from the form |
 
 ---
+
+## Certificate register | سجل الشهادات
+
+Every print/save can be logged to a Google Sheet through an Apps Script Web App — see [backend/SETUP.md](backend/SETUP.md). Same certificate number = same row (upsert). The script also exposes `?no=<cert no>` for verification.
 
 ## Brand | الهوية
 

@@ -5,11 +5,46 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions use on
 
 | Version | Date | Author | Status |
 |---|---|---|---|
-| 1.4 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 1.7 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 1.6 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+| 1.5 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+| 1.4 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.3 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.2 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.1 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.0 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+
+---
+
+## [1.7] — 2026-09-03
+
+### Changed | تعديلات
+- QR code and its "Scan to verify" label raised by 14 mm, clearing the signature area at the bottom-left. Version 1.7. Rollback: folder `sru-certificate-builder-v1.6`.
+
+---
+
+## [1.6] — 2026-09-03
+
+### Added | إضافات
+- `verify.html` — branded public verification page: university logo, bilingual heading, green "شهادة صحيحة وموثّقة" / red "لم يُعثر على شهادة" verdict, certificate details table (no., name, type, issuer, period, grade, issue date), manual number lookup. Reads `?no=` from the URL and queries the Apps Script register; Apps Script URL hardcoded.
+- QR content mode in the builder: **link only** (default — opens the verification page directly on scan) or link + certificate text.
+- `VERIFY_URL` constant (`https://ictsru.github.io/template/verify.html?no=`); verify-URL field override still available.
+
+### Changed | تعديلات
+- Version 1.6; JSON export/import includes `qrMode`. Rollback: folder `sru-certificate-builder-v1.5`.
+
+### Notes | ملاحظات
+- Verification requires the certificate to have been saved to the register (print with logging on, or «حفظ في الشيت فقط») and a certificate number.
+
+---
+
+## [1.5] — 2026-09-03
+
+### Fixed | إصلاحات
+- Certificate layout broke on older browsers (frame missing, content block pushed to the top edge). Cause: CSS `inset` shorthand is ignored by Chrome/Edge < 87 and Safari < 14.5. Replaced with explicit `top/right/bottom/left` on `.frame`, `.frame-inner`, `.content`. No visual change on modern browsers.
+
+### Changed | تعديلات
+- Version 1.5. Rollback: folder `sru-certificate-builder-v1.4`.
 
 ---
 

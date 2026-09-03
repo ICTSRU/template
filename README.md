@@ -1,0 +1,57 @@
+# SRU Certificate Builder | مُنشئ الشهادات
+
+A single-file, department-agnostic certificate template for Sulaiman Al Rajhi University (SRU).
+Any department can open the page, fill in the form, and print or save the certificate as PDF.
+No server, no build step, no external assets (the university logo is embedded).
+
+قالب شهادات موحّد لجامعة سليمان الراجحي في ملف واحد. تفتح أي إدارة الصفحة، تعبّئ النموذج، ثم تطبع الشهادة أو تحفظها بصيغة PDF — دون خادم أو ملفات خارجية.
+
+**Current version:** 1.0 — see [CHANGELOG.md](CHANGELOG.md)
+
+---
+
+## Repository layout | هيكل المستودع
+
+```
+sru-certificate-builder-v1.0/
+├── index.html      ← the builder (form + live preview + print)
+├── README.md
+├── CHANGELOG.md    ← change record for every version
+└── .gitignore
+```
+
+Versioning rule: the **folder** carries the version; the **file name** does not. The version is displayed inside the page header (`Certificate Builder vX.Y`) and in `<title>`.
+
+قاعدة الإصدارات: يُكتب رقم الإصدار في اسم **المجلد** فقط، ويبقى اسم الملف ثابتًا، ويظهر الرقم داخل الصفحة نفسها.
+
+---
+
+## Usage | طريقة الاستخدام
+
+1. Open `index.html` in Chrome or Edge.
+2. Fill the form on the right: department, certificate no., recipient, dates, text, signatories.
+3. Choose a preset (Training completion / Thanks / Attendance / Custom) and gender (مذكّر / مؤنّث).
+4. Click **طباعة / حفظ PDF** → in the print dialog: *Save as PDF*, A4, Landscape, Margins: None, Background graphics: On.
+5. Optionally export the form data as JSON to reissue or archive later.
+
+Text placeholders replaced automatically:
+
+| Placeholder | Replaced with |
+|---|---|
+| `{ه}` | `ه` / `ها` by gender |
+| `{المتدرب}` | `المتدرب` / `المتدربة` |
+| `{الإدارة}` | department name from the form |
+
+---
+
+## Brand | الهوية
+
+Colours, font (Cairo) and layout follow `SRU_IDENTITY.md`: purple `#501e8c`, purple-dark `#3a1464`, blue `#0a6eaa`, gold accent `#a9832f`.
+
+## Browser support
+
+Chrome / Edge (recommended for print fidelity). Firefox works; print margins may need manual setting.
+
+## Maintainer
+
+Mohamed ElMahdy, IT Operations Manager, Sulaiman Al Rajhi University

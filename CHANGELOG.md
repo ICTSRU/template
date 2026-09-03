@@ -5,7 +5,10 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions use on
 
 | Version | Date | Author | Status |
 |---|---|---|---|
-| 2.2 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 2.5 | 2026-09-03 | Mohamed ElMahdy | Released |
+| 2.4 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+| 2.3 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+| 2.2 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 2.1 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 2.0 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.9 | 2026-09-03 | Mohamed ElMahdy | Superseded |
@@ -18,6 +21,29 @@ Format based on [Keep a Changelog](https://keepachangelog.com/); versions use on
 | 1.2 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.1 | 2026-09-03 | Mohamed ElMahdy | Superseded |
 | 1.0 | 2026-09-03 | Mohamed ElMahdy | Superseded |
+
+---
+
+## [2.5] — 2026-09-03
+
+### Changed | تعديلات
+- Apps Script Web App URL replaced with the new deployment (`…/AKfycbw1RnV5…/exec`) in both `index.html` (`SHEET_URL`) and `verify.html` (`API`). Version 2.5 shown on both pages. Rollback: folder `sru-certificate-builder-v2.4`.
+
+---
+
+## [2.4] — 2026-09-03
+
+### Fixed | إصلاحات
+- Printing is now blocked when the register fails to issue a certificate number (unreachable or outdated Apps Script deployment). Previously the certificate printed with an empty number, so its QR opened the verification page with no number ("أدخل رقم الشهادة للتحقق"). A clear error is shown instead.
+- Version 2.4. Rollback: folder `sru-certificate-builder-v2.3`.
+
+---
+
+## [2.3] — 2026-09-03
+
+### Fixed | إصلاحات
+- Blank second page when printing. Print stylesheet now clamps `html/body/.app/.preview/.scaler` to exactly 297 × 210 mm with `overflow:hidden` and forbids page breaks on `.sheet`, so paper-size or margin differences in the print dialog (Letter, default margins) no longer spill onto a second page. Verified single-page output for A4 landscape, A4 with 10 mm margins, Letter landscape and A4 portrait.
+- Version 2.3. Rollback: folder `sru-certificate-builder-v2.2`.
 
 ---
 

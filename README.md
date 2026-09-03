@@ -6,14 +6,14 @@ No server, no build step, no external assets (the university logo is embedded).
 
 قالب شهادات موحّد لجامعة سليمان الراجحي في ملف واحد. تفتح أي إدارة الصفحة، تعبّئ النموذج، ثم تطبع الشهادة أو تحفظها بصيغة PDF — دون خادم أو ملفات خارجية.
 
-**Current version:** 2.2 — see [CHANGELOG.md](CHANGELOG.md)
+**Current version:** 2.5 — see [CHANGELOG.md](CHANGELOG.md)
 
 ---
 
 ## Repository layout | هيكل المستودع
 
 ```
-sru-certificate-builder-v2.2/
+sru-certificate-builder-v2.5/
 ├── index.html      ← the builder (form + live preview + print)
 ├── verify.html     ← public QR verification page (logo + certificate data + validity)
 ├── README.md

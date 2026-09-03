@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>التحقق من الشهادة — جامعة سليمان الراجحي | v1.6</title>
+<title>التحقق من الشهادة — جامعة سليمان الراجحي | v2.5</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--purple:#501e8c;--purple-dark:#3a1464;--purple-light:#f0ebf8;--blue:#0a6eaa;--blue-light:#e6f3fa;--bg:#f7f5fb;--ink:#241436;--muted:#6b5a80;--border:rgba(80,30,140,.12);--gold:#a9832f;--ok:#1d6b3a;--ok-bg:#e9f7ee;--ok-bd:#9fd3b1;--bad:#8b1a1a;--bad-bg:#fdecec;--bad-bd:#f0a9a9}
@@ -58,11 +58,11 @@ td:last-child{font-weight:700;color:var(--purple-dark)}
         <button onclick="go()">تحقق</button>
       </div>
     </div>
-    <div class="foot"><span>الإدارة التنفيذية للاتصالات وتقنية المعلومات — جامعة سليمان الراجحي</span><span>Powered by ICTD 2026 · v1.6</span></div>
+    <div class="foot"><span>الإدارة التنفيذية للاتصالات وتقنية المعلومات — جامعة سليمان الراجحي</span><span>Powered by ICTD 2026 · v2.5</span></div>
   </div>
 </div>
 <script>
-const API='https://script.google.com/macros/s/AKfycbzRE_1aEwjtYK2Pc9MjuJFz_Yh26GS7GE2YUYdSGc2Bgd9H6Pdai82zzqCnl707UA7dTQ/exec';
+const API='https://script.google.com/macros/s/AKfycbw1RnV5aYNNq8wAeJFgrtyMyjkXZICCgbF6OEfaxmOujbT-jeKO6I_zoTZ8CVQbayep3A/exec';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function setState(cls,ic,t,s){ $('state').className='state '+cls; $('state').innerHTML='<div class="ic">'+ic+'</div><div><div class="t">'+t+'</div><div class="s">'+s+'</div></div>'; }

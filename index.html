@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>منشئ الشهادات — تسجيل الدخول | v3.0</title>
+<title>منشئ الشهادات — تسجيل الدخول | v3.1</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--purple:#501e8c;--purple-dark:#3a1464;--purple-light:#f0ebf8;--blue:#0a6eaa;--bg:#f7f5fb;--ink:#241436;--muted:#6b5a80;--border:rgba(80,30,140,.12)}
@@ -77,13 +77,13 @@ main{flex:1;display:flex;justify-content:center;padding:28px 16px}
 
 <footer class="sru-footer sru-tech-bg-dark"><div class="in">
   <div class="sru-support"><b>For Support:</b> Dial <span class="star">*</span> <span class="or">or</span> Send email to: <a href="mailto:servicedesk@sr.edu.sa">servicedesk@sr.edu.sa</a></div>
-  <span class="ver">Certificate Builder v3.0</span>
+  <span class="ver">Certificate Builder v3.1</span>
   <a class="sru-itoc" href="https://ictsru.github.io/ITOC/#forms" target="_blank" rel="noopener"><img src="https://ictsru.github.io/brand/logos/itoc-logo.png" alt="ITOC — IT Operations Center"></a>
 </div></footer>
 
 <script>
 /* رابط نشر منشئ الشهادات (النشر B — Anyone within Sulaiman Al Rajhi University) */
-const BUILDER_URL = 'PASTE_BUILDER_EXEC_URL';
+const BUILDER_URL = 'https://script.google.com/a/macros/sr.edu.sa/s/AKfycbyxu19XX3fBeGQbjXYzGwG6MqTnZVcrvfPECp2P_F5trG7qR8mj7KilehZSASnc6xBktw/exec';
 const go = document.getElementById('go');
 if (/^https:\/\/script\.google\.com\//.test(BUILDER_URL)) { go.href = BUILDER_URL; }
 else { go.removeAttribute('href'); go.style.opacity = .55; go.style.cursor = 'not-allowed'; document.getElementById('warn').style.display = 'block'; }

@@ -85,6 +85,13 @@ main{flex:1;display:flex;justify-content:center;padding:28px 16px}
 /* رابط نشر منشئ الشهادات (النشر B — Anyone within Sulaiman Al Rajhi University) */
 const BUILDER_URL = 'https://script.google.com/a/macros/sr.edu.sa/s/AKfycbyxu19XX3fBeGQbjXYzGwG6MqTnZVcrvfPECp2P_F5trG7qR8mj7KilehZSASnc6xBktw/exec';
 const go = document.getElementById('go');
+/* ITOC single sign-on: shared flag across ictsru.github.io landing pages (30 days; #login shows this page, #sso-off clears) */
+try {
+  var ssoOk = (Date.now() - (+localStorage.getItem('itoc_sso') || 0)) < 2592000000;
+  if (location.hash === '#sso-off') { localStorage.removeItem('itoc_sso'); ssoOk = false; }
+  if (location.hash !== '#login' && location.hash !== '#sso-off' && ssoOk && /^https:\/\/script\.google\.com\//.test(BUILDER_URL)) { localStorage.setItem('itoc_sso', String(Date.now())); location.replace(BUILDER_URL); }
+} catch (e) {}
+go.addEventListener('click', function () { try { localStorage.setItem('itoc_sso', String(Date.now())); } catch (e) {} });
 if (/^https:\/\/script\.google\.com\//.test(BUILDER_URL)) { go.href = BUILDER_URL; }
 else { go.removeAttribute('href'); go.style.opacity = .55; go.style.cursor = 'not-allowed'; document.getElementById('warn').style.display = 'block'; }
 </script>

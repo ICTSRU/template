@@ -87,7 +87,7 @@ const BUILDER_URL = 'https://script.google.com/a/macros/sr.edu.sa/s/AKfycbyxu19X
 const go = document.getElementById('go');
 /* ITOC single sign-on: shared flag across ictsru.github.io landing pages (30 days; #login shows this page, #sso-off clears) */
 try {
-  var ssoOk = (Date.now() - (+localStorage.getItem('itoc_sso') || 0)) < 2592000000;
+  var ssoOk = location.hash === '#itoc' || (Date.now() - (+localStorage.getItem('itoc_sso') || 0)) < 2592000000;
   if (location.hash === '#sso-off') { localStorage.removeItem('itoc_sso'); ssoOk = false; }
   if (location.hash !== '#login' && location.hash !== '#sso-off' && ssoOk && /^https:\/\/script\.google\.com\//.test(BUILDER_URL)) { localStorage.setItem('itoc_sso', String(Date.now())); location.replace(BUILDER_URL); }
 } catch (e) {}
